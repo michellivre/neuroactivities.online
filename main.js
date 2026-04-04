@@ -232,9 +232,57 @@ function preserveUtmsInLinks() {
     });
 }
 
+// Social Proof Notifications
+function initSocialProof() {
+    const toast = document.getElementById('notification-toast');
+    const toastMessage = document.getElementById('toast-message');
+    if (!toast || !toastMessage) return;
+
+    const messages = [
+        '<strong>27 pessoas</strong> compraram na última hora',
+        '<strong>Juliana F.</strong> acabou de comprar!',
+        '<strong>Patrícia M.</strong> acabou de comprar!',
+        '<strong>250 pessoas</strong> compraram nas últimas 24 horas',
+        '<strong>Camila R.</strong> acabou de comprar!',
+        '<strong>Renata S.</strong> acabou de comprar!',
+        '<strong>170 pessoas</strong> interessadas em comprar nas últimas 10 horas',
+        '<strong>Letícia G.</strong> acabou de comprar!',
+        '<strong>Fernanda O.</strong> acabou de comprar!',
+        '<strong>Beatriz C.</strong> acabou de comprar!',
+        '<strong>Mariana P.</strong> acabou de comprar!',
+        '<strong>7 pessoas</strong> estão vendo essa oferta agora',
+        '<strong>Amanda L.</strong> acabou de comprar!',
+        '<strong>Priscila K.</strong> acabou de comprar!'
+    ];
+
+    let messageIndex = 0;
+
+    function showToast() {
+        // Change message
+        toastMessage.innerHTML = messages[messageIndex];
+        messageIndex = (messageIndex + 1) % messages.length;
+
+        // Show toast
+        toast.classList.add('show');
+
+        // Hide after 5 seconds
+        setTimeout(() => {
+            toast.classList.remove('show');
+        }, 5000);
+    }
+
+    // Start after 3 seconds
+    setTimeout(() => {
+        showToast();
+        // Repeat every 12 seconds
+        setInterval(showToast, 12000);
+    }, 3000);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     initCarousel();
     initCountdown();
     initSalesRecovery();
     preserveUtmsInLinks();
+    initSocialProof();
 });
