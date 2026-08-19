@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Portal Pedagógico — Combo Desenvolvimento Cognitivo Infantil</title>
+    <link rel="icon" type="image/webp" href="assets/favicon.webp">
+    <meta name="description"
+        content="Recursos pedagógicos práticos e lúdicos para estimular o desenvolvimento cognitivo, foco, atenção e organização infantil.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        :root {
+            --primary: #0d9488;
+            --primary-dark: #0f766e;
+            --primary-light: #ccfbf1;
+            --accent: #f97316;
+            --accent-hover: #ea580c;
+            --bg-body: #f8fafc;
+            --bg-alt: #f1f5f9;
+            --bg-card: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --border-light: #e2e8f0;
+            --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.05);
+            --shadow-md: 0 10px 25px -5px rgba(15, 23, 42, 0.08);
+            --shadow-lg: 0 20px 30px -10px rgba(15, 23, 42, 0.12);
+            --radius-md: 16px;
+            --radius-lg: 24px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Fredoka', cursive, sans-serif;
+            font-weight: 700;
+            color: var(--text-main);
+            line-height: 1.25;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1.25rem;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .section {
+            padding: 4rem 0;
+        }
+
+        .bg-alt {
+            background-color: var(--bg-alt);
+        }
+
+        .section-tag {
+            display: inline-block;
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            padding: 0.35rem 1rem;
+            border-radius: 999px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.75rem;
+        }
+
+        .section-title {
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            margin-bottom: 0.75rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        .highlight {
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Top Announcement Bar */
+        .top-bar {
+            background: linear-gradient(90deg, #0d9488, #0ea5e9);
+            color: #ffffff;
+            text-align: center;
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* Navbar Header */
+        .header {
+            background: #ffffff;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-sm);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            font-size: 1.6rem;
+        }
+
+        .logo-text {
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--primary-dark);
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.85rem 1.75rem;
+            border-radius: 999px;
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: all 0.25s ease;
+            text-align: center;
+            box-sizing: border-box;
+            white-space: nowrap;
+        }
+
+        .btn-sm {
+            padding: 0.5rem 1.25rem;
+            font-size: 0.9rem;
+        }
+
+        .btn-lg {
+            padding: 1.1rem 2.25rem;
+            font-size: 1.15rem;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: #ffffff !important;
+            box-shadow: 0 4px 14px rgba(249, 115, 22, 0.35);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(249, 115, 22, 0.45);
+        }
+
+        .btn-secondary {
+            background-color: var(--primary);
+            color: #ffffff !important;
+            box-shadow: 0 4px 14px rgba(13, 148, 136, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: radial-gradient(circle at 80% 20%, rgba(13, 148, 136, 0.08) 0%, rgba(255, 255, 255, 0) 70%);
+            padding: 3.5rem 0 4rem;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .hero-title {
+            font-size: clamp(2.1rem, 4.5vw, 3rem);
+            margin-bottom: 1.25rem;
+            letter-spacing: -0.5px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-muted);
+            margin-bottom: 1.75rem;
+            line-height: 1.65;
+        }
+
+        .hero-cta-box {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+
+        .hero-trust-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.25rem;
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .hero-trust-item {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .hero-media {
+            position: relative;
+        }
+
+        .hero-media-card {
+            background: #ffffff;
+            padding: 0.75rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border-light);
+        }
+
+        .hero-img {
+            width: 100%;
+            height: auto;
+            border-radius: var(--radius-md);
+            display: block;
+            object-fit: cover;
+        }
+
+        /* Proof Bar */
+        .proof-bar {
+            background: #ffffff;
+            border-y: 1px solid var(--border-light);
+            padding: 2rem 0;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .proof-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            text-align: center;
+        }
+
+        .proof-num {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: block;
+        }
+
+        .proof-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        /* Benefits Grid */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .benefit-card {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-light);
+        }
+
+        .benefit-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .benefit-title {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .benefit-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        /* Content Showcase */
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3.5rem;
+            align-items: center;
+        }
+
+        .showcase-card {
+            background: #ffffff;
+            padding: 0.75rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-light);
+        }
+
+        .showcase-img {
+            width: 100%;
+            height: auto;
+            border-radius: var(--radius-md);
+            display: block;
+        }
+
+        .check-list {
+            list-style: none;
+            margin: 1.5rem 0 2rem;
+        }
+
+        .check-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 0.85rem;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .check-list .check {
+            color: var(--primary);
+            font-size: 1.2rem;
+            line-height: 1;
+        }
+
+        /* Offer Section */
+        .offer-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-top: 2.5rem;
+        }
+
+        .plan-card {
+            background: #ffffff;
+            padding: 3rem 2.25rem;
+            border-radius: var(--radius-lg);
+            border: 2.5px solid var(--primary);
+            max-width: 480px;
+            width: 100%;
+            position: relative;
+            box-shadow: var(--shadow-lg);
+            text-align: center;
+        }
+
+        .plan-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            color: #ffffff;
+            padding: 0.4rem 1.5rem;
+            border-radius: 999px;
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 700;
+            font-size: 0.85rem;
+            white-space: nowrap;
+        }
+
+        .price-box {
+            margin: 1.75rem 0;
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            color: var(--text-muted);
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .main-price {
+            display: flex;
+            justify-content: center;
+            align-items: baseline;
+            gap: 0.25rem;
+            color: var(--primary-dark);
+            margin: 0.25rem 0;
+        }
+
+        .currency {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .value {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 4rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .price-info {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .plan-features {
+            list-style: none;
+            text-align: left;
+            margin: 1.75rem 0 2rem;
+            border-y: 1px solid var(--border-light);
+            padding: 1.25rem 0;
+        }
+
+        .plan-features li {
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.95rem;
+        }
+
+        .plan-features li:last-child {
+            margin-bottom: 0;
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+
+        /* FAQ */
+        .faq-accordion {
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .faq-item {
+            background: #ffffff;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-light);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .faq-question {
+            width: 100%;
+            padding: 1.25rem;
+            background: none;
+            border: none;
+            text-align: left;
+            font-family: 'Fredoka', cursive, sans-serif;
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: var(--primary-dark);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .faq-answer {
+            padding: 0 1.25rem 1.25rem;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            display: none;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        /* Footer */
+        .footer {
+            background: #ffffff;
+            padding: 3rem 0 2rem;
+            border-top: 1px solid var(--border-light);
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        .footer-links {
+            margin: 1.25rem 0;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .footer-links a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .disclaimer {
+            margin-top: 1.5rem;
+            font-size: 0.8rem;
+            opacity: 0.75;
+        }
+
+        /* Mobile Fixes (Strictly preventing layout breaks) */
+        @media (max-width: 768px) {
+            .header-inner {
+                height: 60px;
+            }
+
+            .nav-menu a.nav-link {
+                display: none; /* Hide link texts on mobile */
+            }
+
+            .logo-text {
+                font-size: 1.05rem;
+            }
+
+            .hero {
+                padding: 2rem 0 3rem;
+            }
+
+            .hero-grid, .showcase-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .hero-cta-box {
+                align-items: center;
+                width: 100%;
+            }
+
+            .hero-cta-box .btn {
+                width: 100%;
+            }
+
+            .hero-trust-list {
+                justify-content: center;
+            }
+
+            .proof-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.25rem;
+            }
+
+            .proof-num {
+                font-size: 1.75rem;
+            }
+
+            .plan-card {
+                padding: 2.25rem 1.25rem;
+            }
+
+            .btn.lg {
+                padding: 1rem 1.5rem;
+                font-size: 1.05rem;
+                width: 100%;
+            }
+
+            .check-list li {
+                text-align: left;
+            }
+        }
+    </style>
+
+    <!-- Meta Pixel Code -->
+    <script>
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+            n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '989077889145785');
+        fbq('track', 'PageView');
+    </script>
+    <noscript>
+        <img height="1" width="1" style="display:none"
+            src="https://www.facebook.com/tr?id=989077889145785&ev=PageView&noscript=1" />
+    </noscript>
+    <!-- End Meta Pixel Code -->
+</head>
+
+<body>
+
+    <!-- Top Announcement Bar -->
+    <div class="top-bar">
+        🧠 <strong>OFERTA POR TEMPO LIMITADO:</strong> Obtenha o Combo Completo com 66% de Desconto!
+    </div>
+
+    <!-- Header Navbar -->
+    <header class="header">
+        <div class="container header-inner">
+            <a href="#" class="logo">
+                <span class="logo-icon">🧠</span>
+                <span class="logo-text">Portal Pedagógico</span>
+            </a>
+            <nav class="nav-menu">
+                <a href="#beneficios" class="nav-link">Benefícios</a>
+                <a href="#conteudo" class="nav-link">O Que Inclui</a>
+                <a href="#faq" class="nav-link">Dúvidas</a>
+                <a href="#oferta" class="btn btn-sm btn-primary">Acessar Material</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <span class="section-tag">✨ Material Digital Exclusivo (PDF)</span>
+                <h1 class="hero-title">Estimule o <span class="highlight">Desenvolvimento Cognitivo</span> do seu filho com atividades lúdicas</h1>
+                <p class="hero-subtitle">Recursos pedagógicos desenhados por especialistas para apoiar pais e educadores na criação de um ambiente rico em estímulos para a concentração, foco e organização infantil.</p>
+                <div class="hero-cta-box">
+                    <a href="#oferta" class="btn btn-primary btn-lg">CONHECER O COMBO COMPLETO →</a>
+                    <div class="hero-trust-list">
+                        <span class="hero-trust-item">⚡ Acesso Imediato</span>
+                        <span class="hero-trust-item">• 📄 Imprima Quando Quiser</span>
+                        <span class="hero-trust-item">• 🔒 Compra Segura</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-media">
+                <div class="hero-media-card">
+                    <img src="./assets/hero_main.webp" alt="Atividades Pedagógicas Cerebrais" class="hero-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Proof Bar -->
+    <section class="proof-bar">
+        <div class="container">
+            <div class="proof-grid">
+                <div>
+                    <span class="proof-num">+300</span>
+                    <span class="proof-desc">Atividades em PDF</span>
+                </div>
+                <div>
+                    <span class="proof-num">12.000+</span>
+                    <span class="proof-desc">Famílias Atendidas</span>
+                </div>
+                <div>
+                    <span class="proof-num">4.9/5</span>
+                    <span class="proof-desc">Avaliação dos Pais</span>
+                </div>
+                <div>
+                    <span class="proof-num">100%</span>
+                    <span class="proof-desc">Garantia de Satisfação</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="beneficios" class="section bg-alt">
+        <div class="container text-center">
+            <span class="section-tag">Por Que Escolher?</span>
+            <h2 class="section-title">Tudo o Que Seu Filho Precisa Para <span class="highlight">Aprender Brincando</span></h2>
+            <p class="section-subtitle">Um conjunto de ferramentas pedagógicas desenvolvidas para o dia a dia.</p>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <span class="benefit-icon">🔍</span>
+                    <h3 class="benefit-title">Atenção & Concentração</h3>
+                    <p class="benefit-desc">Exercícios visuais projetados para construir e fortalecer o tempo de foco sustentado nas tarefas escolares.</p>
+                </div>
+                <div class="benefit-card">
+                    <span class="benefit-icon">📅</span>
+                    <h3 class="benefit-title">Organização & Rotina</h3>
+                    <p class="benefit-desc">Quadros visuais para ajudar a criança a planejar o seu dia com autonomia, segurança e previsibilidade.</p>
+                </div>
+                <div class="benefit-card">
+                    <span class="benefit-icon">🧩</span>
+                    <h3 class="benefit-title">Raciocínio Lógico</h3>
+                    <p class="benefit-desc">Desafios lúdicos que estimulam a resolução de problemas e o raciocínio rápido de forma divertida.</p>
+                </div>
+                <div class="benefit-card">
+                    <span class="benefit-icon">🧘</span>
+                    <h3 class="benefit-title">Autorregulação Emocional</h3>
+                    <p class="benefit-desc">Atividades que ajudam no controle da impulsividade, diminuindo o estresse e a ansiedade infantil.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Showcase -->
+    <section id="conteudo" class="section">
+        <div class="container showcase-grid">
+            <div class="showcase-media">
+                <div class="showcase-card">
+                    <img src="./assets/carousel_1.webp" alt="Amostra do Material Pedagógico" class="showcase-img">
+                </div>
+            </div>
+            <div class="showcase-content">
+                <span class="section-tag">O Que Está Incluído</span>
+                <h2 class="section-title">O Que Compõe o Nosso Material Completo? 📚</h2>
+                <p class="section-subtitle" style="text-align: left; margin: 0;">Nossa curadoria foi cuidadosamente elaborada por especialistas em neuropsicopedagogia.</p>
+                <ul class="check-list">
+                    <li><span class="check">✓</span> Mais de 300 atividades pedagógicas prontas para imprimir em formato A4.</li>
+                    <li><span class="check">✓</span> Guia prático de aplicação para pais, cuidadores e educadores.</li>
+                    <li><span class="check">✓</span> Jogos de memória, associação visual, labirintos e coordenação motora.</li>
+                    <li><span class="check">✓</span> Recursos para controle de ansiedade, impulsividade e foco diário.</li>
+                    <li><span class="check">✓</span> Acesso vitalício e atualizações inclusas no portal.</li>
+                </ul>
+                <a href="#oferta" class="btn btn-secondary btn-lg">GARANTIR MEU ACESSO AGORA →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Offer Section -->
+    <section id="oferta" class="section offer bg-alt">
+        <div class="container text-center">
+            <span class="section-tag">Oferta Especial</span>
+            <h2 class="section-title">Invista no Futuro do Seu Filho Hoje</h2>
+            <p class="section-subtitle">Acesso vitalício ao portal com desconto exclusivo por tempo limitado.</p>
+
+            <div class="offer-wrapper">
+                <div class="plan-card">
+                    <span class="plan-badge">🔥 66% DE DESCONTO SOMENTE HOJE</span>
+                    <h3 style="font-size: 1.5rem; margin-top: 0.5rem;">Combo Desenvolvimento Completo</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Todo o acervo digital de atividades pedagógicas</p>
+                    
+                    <div class="price-box">
+                        <span class="old-price">De R$ 197,00</span>
+                        <div class="main-price">
+                            <span class="currency">R$</span>
+                            <span class="value">67,00</span>
+                        </div>
+                        <p class="price-info">Pagamento único — Sem mensalidades ou assinaturas</p>
+                    </div>
+
+                    <ul class="plan-features">
+                        <li><span style="color: var(--primary);">✅</span> <strong>+300 Atividades em PDF Prontas para Imprimir</strong></li>
+                        <li><span style="color: var(--primary);">✅</span> <strong>Planejador Visual de Rotina Semanal</strong></li>
+                        <li><span style="color: var(--primary);">✅</span> <strong>Guia de Exercícios de Foco e Atenção</strong></li>
+                        <li><span style="color: var(--primary);">✅</span> <strong>Jogos Cognitivos e Raciocínio Lógico</strong></li>
+                        <li><span style="color: var(--primary);">✅</span> <strong>Acesso Vitalício e Atualizações Sem Custo</strong></li>
+                    </ul>
+
+                    <a href="https://pay.lowify.com.br/checkout?product_id=Vpu1ii" class="btn btn-primary btn-lg pulse" style="width: 100%;">ADQUIRIR COMBO POR R$ 67,00</a>
+                    
+                    <div class="trust-badges">
+                        <span>🛡️ Garantia de 7 Dias</span>
+                        <span>⚡ Entrega no E-mail</span>
+                        <span>🔒 Compra Segura</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="section">
+        <div class="container max-md">
+            <div class="text-center">
+                <span class="section-tag">Dúvidas Frequentes</span>
+                <h2 class="section-title">Perguntas Frequentes</h2>
+            </div>
+            <div class="faq-accordion">
+                <div class="faq-item">
+                    <button class="faq-question">Como recebo o material após a compra? <span class="arrow">▼</span></button>
+                    <div class="faq-answer">
+                        <p>O acesso é 100% digital e imediato. Logo após a confirmação do pagamento, você receberá um e-mail com os dados de acesso para baixar e imprimir todos os arquivos em PDF quando quiser.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Para quais idades o material é recomendado? <span class="arrow">▼</span></button>
+                    <div class="faq-answer">
+                        <p>O combo foi desenvolvido para crianças de 3 a 12 anos de idade, com atividades adaptáveis para cada etapa do desenvolvimento cognitivo.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">O pagamento é único ou mensalidade? <span class="arrow">▼</span></button>
+                    <div class="faq-answer">
+                        <p>O pagamento é 100% único! Não existe nenhuma mensalidade ou cobrança recorrente. Você paga uma única vez e garante acesso vitalício a todo o conteúdo.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Preciso de impressora colorida? <span class="arrow">▼</span></button>
+                    <div class="faq-answer">
+                        <p>Não é obrigatório! A grande maioria das atividades pode ser impressa em preto e branco perfeitamente, permitindo inclusive que a criança pinte e personalize as folhas.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p style="font-family: 'Fredoka', sans-serif; font-size: 1.1rem; color: var(--primary-dark); margin-bottom: 0.5rem;">🧠 Portal Pedagógico</p>
+            <p>&copy; 2026 Portal Pedagógico — Atividades Cerebrais. Todos os direitos reservados.</p>
+            <div class="footer-links">
+                <a href="#beneficios">Benefícios</a>
+                <a href="#conteudo">O Que Inclui</a>
+                <a href="#oferta">Garantir Acesso</a>
+                <a href="#faq">Dúvidas</a>
+            </div>
+            <p class="disclaimer">Este material tem fins estritamente educacionais e pedagógicos.</p>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
