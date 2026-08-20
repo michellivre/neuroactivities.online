@@ -279,10 +279,82 @@ function initSocialProof() {
     }, 3000);
 }
 
+// Funnel Visitor Tracking and Flow Management
+function setupVisitorFlow() {
+    const syncOffers = () => {
+        const query = window.location.search;
+        if (!query) return;
+
+        const anchors = document.querySelectorAll('a[href*="lastlink.com"]');
+        anchors.forEach(anchor => {
+            let currentHref = anchor.getAttribute('href');
+            if (currentHref) {
+                const sep = currentHref.includes("?") ? "&" : "?";
+                if (!currentHref.includes("utm_source=")) {
+                    anchor.href = currentHref + sep + query.substring(1);
+                }
+            }
+        });
+    };
+
+    syncOffers();
+}
+
+// Upgrade Modal Handler (Triggers R$ 27,97 App Upgrade when R$ 19,97 Basic button is clicked)
+function initUpgradeModal() {
+    const upgradeOverlay = document.getElementById('upgrade-popup-overlay');
+    const closeBtn = document.getElementById('upgrade-popup-close');
+    const acceptBtn = document.getElementById('upgrade-popup-accept-btn');
+    const declineLink = document.getElementById('upgrade-popup-decline-link');
+
+    const searchParams = window.location.search;
+
+    const appendUtms = (url) => {
+        if (!searchParams) return url;
+        const sep = url.includes('?') ? '&' : '?';
+        return url + sep + searchParams.substring(1);
+    };
+
+    if (acceptBtn) {
+        acceptBtn.href = appendUtms('https://lastlink.com/p/CA2B78DE4/checkout-payment');
+    }
+    if (declineLink) {
+        declineLink.href = appendUtms('https://lastlink.com/p/CFBC56D19/checkout-payment/');
+    }
+
+    // Attach click event to all Basic R$ 19,97 buttons (except the decline link inside the popup)
+    const basicBtns = document.querySelectorAll('a[href*="CFBC56D19"]:not(#upgrade-popup-decline-link)');
+    basicBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            if (upgradeOverlay) {
+                upgradeOverlay.classList.add('active');
+            }
+        });
+    });
+
+    if (closeBtn && upgradeOverlay) {
+        closeBtn.addEventListener('click', () => {
+            upgradeOverlay.classList.remove('active');
+        });
+    }
+
+    if (upgradeOverlay) {
+        upgradeOverlay.addEventListener('click', (e) => {
+            if (e.target === upgradeOverlay) {
+                upgradeOverlay.classList.remove('active');
+            }
+        });
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+    setupVisitorFlow();
     initCarousel();
     initCountdown();
     initSalesRecovery();
     preserveUtmsInLinks();
     initSocialProof();
+    initUpgradeModal();
 });
