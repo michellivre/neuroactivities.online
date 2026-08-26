@@ -1257,3 +1257,257 @@ footer p {
     margin-bottom: 0.5rem;
 }
 
+/* ─── EXPERT SECTION (RENATA OLIVEIRA) ────────────────── */
+.expert-section {
+    padding: var(--space-lg) 0 var(--space-sm) 0;
+    position: relative;
+    background: var(--bg-alt, #f8fafc);
+}
+
+.expert-section + section,
+.expert-section + .section {
+    padding-top: var(--space-md);
+}
+
+.grid-expert {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: var(--space-lg);
+    align-items: center;
+    margin-top: var(--space-md);
+}
+
+.expert-visual {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.expert-avatar-wrapper {
+    position: relative;
+    width: 220px;
+    height: 220px;
+    margin-bottom: var(--space-md);
+    border-radius: 50%;
+    padding: 6px;
+    background: linear-gradient(135deg, #0d9488 0%, #3b82f6 50%, #ee2a7b 100%);
+    box-shadow: var(--shadow-lg);
+    transition: transform 0.3s ease;
+}
+
+.expert-avatar-wrapper:hover {
+    transform: scale(1.03);
+}
+
+.expert-avatar-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid white;
+}
+
+.expert-badge-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(13, 148, 136, 0.1);
+    color: var(--primary);
+    border: 1px solid rgba(13, 148, 136, 0.2);
+    padding: 6px 16px;
+    border-radius: var(--radius-full);
+    font-size: 0.85rem;
+    font-weight: 700;
+    font-family: 'Fredoka', sans-serif;
+    margin-bottom: var(--space-xs);
+}
+
+.expert-content {
+    text-align: left;
+}
+
+.expert-content h3 {
+    font-size: 1.8rem;
+    color: var(--text-main);
+    margin-bottom: 4px;
+    font-family: 'Fredoka', sans-serif;
+}
+
+.expert-subtitle {
+    font-size: 1rem;
+    color: var(--primary);
+    font-weight: 700;
+    margin-bottom: var(--space-sm);
+}
+
+.expert-bio {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: var(--space-md);
+}
+
+.expert-pillars {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    margin-bottom: 0;
+}
+
+.expert-pillar-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-sm);
+    background: white;
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid #e2e8f0;
+}
+
+.expert-pillar-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.expert-pillar-text h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 2px;
+}
+
+.expert-pillar-text p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+    margin: 0;
+}
+
+/* ─── COMPACT INSTAGRAM PROFILE WIDGET ────────────────── */
+.insta-compact-widget {
+    display: inline-flex;
+    align-items: center;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: var(--radius-md);
+    padding: var(--space-sm) var(--space-md);
+    gap: var(--space-sm);
+    box-shadow: var(--shadow-sm);
+    margin: 0 auto;
+    text-align: left;
+    max-width: 420px;
+    width: 100%;
+}
+
+.insta-widget-avatar-wrapper {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #f9ce34 0%, #ee2a7b 50%, #6228d7 100%);
+    padding: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.insta-widget-avatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1.5px solid white;
+}
+
+.insta-widget-info {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    min-width: 0;
+}
+
+.insta-widget-name {
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin: 0;
+    text-align: left;
+    line-height: 1.2;
+}
+
+.verified-badge-blue {
+    background: #0095f6;
+    color: white;
+    border-radius: 50%;
+    width: 14px;
+    height: 14px;
+    font-size: 9px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.insta-widget-handle {
+    font-size: 0.8rem;
+    color: var(--primary);
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.insta-widget-followers {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    line-height: 1.3;
+}
+
+.insta-widget-action {
+    flex-shrink: 0;
+}
+
+.insta-widget-badge {
+    display: inline-block;
+    background: #e0f2fe;
+    color: #0369a1;
+    padding: 4px 12px;
+    border-radius: var(--radius-full);
+    font-size: 0.8rem;
+    font-weight: 700;
+    font-family: 'Fredoka', sans-serif;
+    border: 1px solid #bae6fd;
+    line-height: 1.2;
+}
+
+@media (max-width: 768px) {
+    .grid-expert {
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
+    }
+    .expert-content {
+        text-align: center;
+    }
+    .expert-pillar-item {
+        text-align: left;
+    }
+    .expert-avatar-wrapper {
+        width: 180px;
+        height: 180px;
+    }
+}
+
+@media (max-width: 480px) {
+    .insta-compact-widget {
+        padding: 0.75rem 1rem;
+        gap: 0.75rem;
+    }
+}
+
+
