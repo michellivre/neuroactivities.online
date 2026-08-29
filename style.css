@@ -354,32 +354,121 @@ h4 {
     }
 }
 
-/* Benefits Grid */
-.benefits-grid {
+/* Activities / Skills Grid */
+.activities-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: var(--space-md);
-    margin-top: var(--space-lg);
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: var(--space-md);
+    margin-bottom: var(--space-md);
 }
 
-.benefit-card {
-    padding: var(--space-md);
-    text-align: center;
-    transition: transform 0.3s ease;
+@media (max-width: 900px) {
+    .activities-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.25rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .activities-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75rem;
+    }
+}
+
+.activity-card {
+    background: #ffffff;
+    border-radius: var(--radius-md);
+    padding: 0.85rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(13, 148, 136, 0.12);
     display: flex;
     flex-direction: column;
     align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    overflow: hidden;
+}
+
+.activity-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 25px rgba(13, 148, 136, 0.15);
+    border-color: var(--primary-light);
+}
+
+.activity-img-wrap {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    background: #f1f5f9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.activity-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.activity-card:hover .activity-img-wrap img {
+    transform: scale(1.05);
+}
+
+.activity-badge {
+    margin-top: 0.75rem;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    text-align: center;
+    width: 100%;
+}
+
+@media (max-width: 480px) {
+    .activity-card {
+        padding: 0.5rem;
+    }
+    .activity-badge {
+        font-size: 0.825rem;
+        flex-direction: column;
+        gap: 0.15rem;
+        margin-top: 0.5rem;
+    }
+}
+
+.activities-conclusion {
+    margin-top: var(--space-lg);
+    display: inline-block;
+    padding: 1.25rem 2rem;
+    background: linear-gradient(135deg, rgba(13, 148, 136, 0.08) 0%, rgba(14, 165, 233, 0.12) 100%);
+    border: 2px dashed var(--primary);
     border-radius: var(--radius-lg);
-    background: white;
 }
 
-.benefit-card:hover {
-    transform: translateY(-10px);
+.conclusion-text {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--primary-dark);
+    margin: 0;
+    letter-spacing: -0.01em;
 }
 
-.benefit-card .icon {
-    font-size: 2.5rem;
-    margin-bottom: var(--space-sm);
+@media (max-width: 600px) {
+    .conclusion-text {
+        font-size: 1.05rem;
+    }
+    .activities-conclusion {
+        padding: 1rem 1.25rem;
+    }
 }
 
 /* Offer Section */
