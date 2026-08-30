@@ -286,7 +286,7 @@ function setupVisitorFlow() {
         h1: "bmV1cm9hY3Rpdml0aWVzLm9ubGluZQ==", // neuroactivities.online
         h2: "d3d3Lm5ldXJvYWN0aXZpdGllcy5vbmxpbmU=", // www.neuroactivities.online
         c1: "aHR0cHM6Ly9sYXN0bGluay5jb20vcC9DRkJDNTZEMTkvY2hlY2tvdXQtcGF5bWVudC8=", // basic checkout (Lastlink)
-        c2: "aHR0cHM6Ly9sYXN0bGluay5jb20vcC9DNzEyRDE2NzcvY2hlY2tvdXQtcGF5bWVudC8=", // premium checkout (Lastlink)
+        c2: "aHR0cHM6Ly9sYXN0bGluay5jb20vcC9DMzA5ODc2RDkvY2hlY2tvdXQtcGF5bWVudC8=", // premium checkout (Lastlink - R$ 27,97)
         c3: "aHR0cHM6Ly9sYXN0bGluay5jb20vcC9DRkJDNTZEMTkvY2hlY2tvdXQtcGF5bWVudC8=" // discount checkout (Lastlink)
     };
 
@@ -343,55 +343,6 @@ function setupVisitorFlow() {
     }
 }
 
-// Upgrade Modal Handler (Triggers R$ 27,97 App Upgrade when Basic button is clicked)
-function initUpgradeModal() {
-    const upgradeOverlay = document.getElementById('upgrade-popup-overlay');
-    const closeBtn = document.getElementById('upgrade-popup-close');
-    const acceptBtn = document.getElementById('upgrade-popup-accept-btn');
-    const declineLink = document.getElementById('upgrade-popup-decline-link');
-
-    const searchParams = window.location.search;
-
-    const appendUtms = (url) => {
-        if (!searchParams) return url;
-        const sep = url.includes('?') ? '&' : '?';
-        return url + sep + searchParams.substring(1);
-    };
-
-    if (acceptBtn) {
-        acceptBtn.href = appendUtms('https://lastlink.com/p/C309876D9/checkout-payment/');
-    }
-    if (declineLink) {
-        declineLink.href = appendUtms('https://lastlink.com/p/CFBC56D19/checkout-payment/');
-    }
-
-    // Attach click event to all Basic buttons (except the decline link inside the popup)
-    const basicBtns = document.querySelectorAll('a[href*="CFBC56D19"]:not(#upgrade-popup-decline-link)');
-    basicBtns.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            if (upgradeOverlay) {
-                upgradeOverlay.classList.add('active');
-            }
-        });
-    });
-
-    if (closeBtn && upgradeOverlay) {
-        closeBtn.addEventListener('click', () => {
-            upgradeOverlay.classList.remove('active');
-        });
-    }
-
-    if (upgradeOverlay) {
-        upgradeOverlay.addEventListener('click', (e) => {
-            if (e.target === upgradeOverlay) {
-                upgradeOverlay.classList.remove('active');
-            }
-        });
-    }
-}
-
 document.addEventListener('DOMContentLoaded', () => {
     setupVisitorFlow();
     initCarousel();
@@ -399,5 +350,4 @@ document.addEventListener('DOMContentLoaded', () => {
     initSalesRecovery();
     preserveUtmsInLinks();
     initSocialProof();
-    initUpgradeModal();
 });
