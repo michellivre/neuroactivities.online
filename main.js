@@ -134,6 +134,128 @@ function initCarousel() {
     startAutoplay();
 }
 
+// Testimonials Carousel (WhatsApp Style) Logic
+function initTestimonialsCarousel() {
+    const viewport = document.getElementById('testimonialsViewport');
+    const track = document.getElementById('testimonialsTrack');
+    const prevBtn = document.getElementById('testimPrevBtn');
+    const nextBtn = document.getElementById('testimNextBtn');
+    const dotsContainer = document.getElementById('testimonialsDots');
+
+    if (!viewport || !track) return;
+
+    const slides = track.querySelectorAll('.testim-carousel-slide');
+    if (!slides.length) return;
+
+    let currentIndex = 0;
+    let autoplayTimer = null;
+    let isInteracting = false;
+
+    // Create dots
+    if (dotsContainer) {
+        dotsContainer.innerHTML = '';
+        slides.forEach((_, idx) => {
+            const dot = document.createElement('button');
+            dot.classList.add('testim-dot');
+            dot.setAttribute('aria-label', `Ir para depoimento ${idx + 1}`);
+            if (idx === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => {
+                scrollToSlide(idx);
+                pauseAutoplayTemp();
+            });
+            dotsContainer.appendChild(dot);
+        });
+    }
+
+    const dots = dotsContainer ? dotsContainer.querySelectorAll('.testim-dot') : [];
+
+    function updateActiveDot(index) {
+        currentIndex = index;
+        dots.forEach((dot, idx) => {
+            dot.classList.toggle('active', idx === index);
+        });
+    }
+
+    function scrollToSlide(index) {
+        if (index < 0) index = slides.length - 1;
+        if (index >= slides.length) index = 0;
+        const targetSlide = slides[index];
+        if (targetSlide) {
+            const leftPos = targetSlide.offsetLeft - (viewport.clientWidth - targetSlide.clientWidth) / 2;
+            viewport.scrollTo({
+                left: Math.max(0, leftPos),
+                behavior: 'smooth'
+            });
+            updateActiveDot(index);
+        }
+    }
+
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            scrollToSlide(currentIndex + 1);
+            pauseAutoplayTemp();
+        });
+    }
+
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            scrollToSlide(currentIndex - 1);
+            pauseAutoplayTemp();
+        });
+    }
+
+    // Detect active slide on touch/manual scroll
+    let scrollDebounce;
+    viewport.addEventListener('scroll', () => {
+        clearTimeout(scrollDebounce);
+        scrollDebounce = setTimeout(() => {
+            const viewportCenter = viewport.scrollLeft + viewport.clientWidth / 2;
+            let closestIndex = 0;
+            let minDistance = Infinity;
+
+            slides.forEach((slide, idx) => {
+                const slideCenter = slide.offsetLeft + slide.clientWidth / 2;
+                const dist = Math.abs(viewportCenter - slideCenter);
+                if (dist < minDistance) {
+                    minDistance = dist;
+                    closestIndex = idx;
+                }
+            });
+
+            updateActiveDot(closestIndex);
+        }, 50);
+    }, { passive: true });
+
+    // Autoplay logic
+    function startAutoplay() {
+        stopAutoplay();
+        autoplayTimer = setInterval(() => {
+            if (!isInteracting) {
+                const nextIndex = (currentIndex + 1) % slides.length;
+                scrollToSlide(nextIndex);
+            }
+        }, 5500);
+    }
+
+    function stopAutoplay() {
+        if (autoplayTimer) clearInterval(autoplayTimer);
+    }
+
+    function pauseAutoplayTemp() {
+        stopAutoplay();
+        setTimeout(startAutoplay, 6000);
+    }
+
+    viewport.addEventListener('mouseenter', () => { isInteracting = true; });
+    viewport.addEventListener('mouseleave', () => { isInteracting = false; });
+    viewport.addEventListener('touchstart', () => { isInteracting = true; }, { passive: true });
+    viewport.addEventListener('touchend', () => {
+        setTimeout(() => { isInteracting = false; }, 2500);
+    }, { passive: true });
+
+    startAutoplay();
+}
+
 // Countdown Timer Logic
 function initCountdown() {
     const timerElement = document.getElementById('countdown-timer');
@@ -285,9 +407,9 @@ function setupVisitorFlow() {
     const keys = {
         h1: "bmV1cm9hY3Rpdml0aWVzLm9ubGluZQ==", // neuroactivities.online
         h2: "d3d3Lm5ldXJvYWN0aXZpdGllcy5vbmxpbmU=", // www.neuroactivities.online
-        c1: "aHR0cHM6Ly9sYXN0bGluay5jb20vcC9DRkJDNTZEMTkvY2hlY2tvdXQtcGF5bWVudC8=", // basic checkout (Lastlink)
-        c2: "aHR0cHM6Ly9sYXN0bGluay5jb20vcC9DMzA5ODc2RDkvY2hlY2tvdXQtcGF5bWVudC8=", // premium checkout (Lastlink - R$ 27,97)
-        c3: "aHR0cHM6Ly9sYXN0bGluay5jb20vcC9DRkJDNTZEMTkvY2hlY2tvdXQtcGF5bWVudC8=" // discount checkout (Lastlink)
+        c1: "aHR0cHM6Ly9wYXlmYXN0LmdyZWVubi5jb20uYnIvZzMya3hybi9vZmZlci9yOXppdUE=", // basic checkout (Greenn - R$ 19,97)
+        c2: "aHR0cHM6Ly9wYXlmYXN0LmdyZWVubi5jb20uYnIvZzMya3hybi9vZmZlci9oZW5UZEw/Y2hfaWQ9MTQzNzc3", // premium checkout (Greenn - R$ 27,97)
+        c3: "aHR0cHM6Ly9wYXlmYXN0LmdyZWVubi5jb20uYnIvZzMya3hybi9vZmZlci9yOXppdUE=" // discount checkout (Greenn - R$ 19,97)
     };
 
     const dec = (str) => atob(str);
@@ -304,7 +426,7 @@ function setupVisitorFlow() {
         const hasTrackingParams = window.location.search && window.location.search.length > 1;
 
         const syncOffers = () => {
-            const anchors = document.querySelectorAll('a[href*="lastlink.com"], a[href*="checkout.payt.com.br"]');
+            const anchors = document.querySelectorAll('a[href*="lastlink.com"], a[href*="checkout.payt.com.br"], a[href*="payfast.greenn.com.br"]');
             anchors.forEach(anchor => {
                 const textContent = (anchor.textContent || "").toUpperCase();
                 const pathName = window.location.pathname;
@@ -346,6 +468,7 @@ function setupVisitorFlow() {
 document.addEventListener('DOMContentLoaded', () => {
     setupVisitorFlow();
     initCarousel();
+    initTestimonialsCarousel();
     initCountdown();
     initSalesRecovery();
     preserveUtmsInLinks();
