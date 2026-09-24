@@ -45,6 +45,9 @@
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
 }
 
 body {
@@ -53,6 +56,9 @@ body {
     color: var(--text-main);
     line-height: 1.6;
     overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
+    position: relative;
 }
 
 h1,
@@ -95,9 +101,11 @@ h4 {
 
 /* Layout Utilities */
 .container {
+    width: 100%;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 var(--space-md);
+    box-sizing: border-box;
 }
 
 .section {
@@ -250,6 +258,8 @@ h4 {
     justify-content: center;
     align-items: center;
     width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
     background: radial-gradient(circle at 10% 20%, rgba(13, 148, 136, 0.05) 0%, rgba(255, 255, 255, 0) 90%);
 }
 
@@ -262,6 +272,7 @@ h4 {
     max-width: 900px;
     width: 100%;
     margin: 0 auto;
+    box-sizing: border-box;
 }
 
 .hero-content {
@@ -360,13 +371,14 @@ h4 {
 
 /* Continuous Activities Marquee (Hero Section) */
 .hero-marquee-wrapper {
-    order: 4;
     width: 100%;
     max-width: 100%;
     margin-top: 3rem;
     overflow: hidden;
     position: relative;
     padding: 10px 0 25px 0;
+    contain: paint;
+    box-sizing: border-box;
     -webkit-mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
     mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
 }
@@ -429,6 +441,10 @@ h4 {
     .hero-marquee-wrapper {
         margin-top: 2rem;
         padding: 5px 0 20px 0;
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden;
+        contain: paint;
         -webkit-mask-image: linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%);
         mask-image: linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%);
     }
@@ -1026,10 +1042,14 @@ h4 {
     align-items: center;
     justify-content: center;
     gap: 12px;
+    width: 100%;
+    max-width: 100%;
 }
 
 .testim-carousel-viewport {
+    min-width: 0;
     width: 100%;
+    max-width: 100%;
     overflow-x: auto;
     overflow-y: hidden;
     scroll-behavior: smooth;
@@ -1037,6 +1057,7 @@ h4 {
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     padding: 15px 5px 25px 5px;
+    contain: paint;
 }
 
 .testim-carousel-viewport::-webkit-scrollbar {
@@ -1484,9 +1505,11 @@ h4 {
     }
 
     .hero-marquee-wrapper {
-        order: 4;
         width: 100%;
+        max-width: 100%;
         margin-top: 1rem;
+        overflow: hidden;
+        contain: paint;
     }
 
     .grid-guarantee {
